@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ElevenLabs Convai Test</title>
+</head>
+<body>
+
+    <!-- Your ElevenLabs Convai Agent -->
+    <elevenlabs-convai agent-id="agent_2601kbfd3zx1ebgv3m9tzkrz3ra9"></elevenlabs-convai>
+
+    <!-- ElevenLabs Convai Script -->
+    <script 
+        src="https://unpkg.com/@elevenlabs/convai-widget-embed" 
+        async 
+        type="text/javascript">
+    </script>
+
+    <script>
+        // Wait for widget to load, then modify the shadow DOM
+        window.addEventListener("DOMContentLoaded", () => {
+            const interval = setInterval(() => {
+                const widget = document.querySelector("elevenlabs-convai");
+                if (!widget || !widget.shadowRoot) return;
+
+                // Try selecting watermark inside shadow DOM
+                const watermark = widget.shadowRoot.querySelector("p");
+                if (watermark) {
+                    watermark.style.opacity = "0";
+                    watermark.style.pointerEvents = "none";
+                    clearInterval(interval);
+                }
+            }, 200);
+        });
+    </script>
+
+</body>
+</html>
+
